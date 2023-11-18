@@ -25,7 +25,8 @@ Made by Aji Saka team &copy; 2023
   - Maulina Alfiyatur Rohmaniyah<br>
   - Syafina Audia Akira Winarto<br>
   - Yoga Al Hafsy<br>
-
+  - Dwi Putra Ardiansyah<br>
+  
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
