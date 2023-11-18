@@ -1,8 +1,34 @@
+# Solusi Laundry
+
+## Deskripsi
+
+Sebuah web yang membantu mengedukasi dan mencegah permasalah stunting dengan menyediakan berbagai informasi mengenai stunting, fitur pemantauan pertumbuhan anak, serta menjadi penghubung antara orang tua dengan para konselor ahli gizi dan tenaga kesehatan, juga forum diskusi.
+
+## Features
+
+#### Framework
+
+Dalam pembuatan website ini, kami menggunakan framework [Tailwind](https://tailwindcss.com/).
+
+#### Fitur
+
+Web yang berisi berbagai macam informasi mengenai layanan laundry yang tersedia, serta dapat melakukan pemesanan dengan mudah, lalu dapat melihat estimasi pesanan sudah selesai, dan menampilkan pesanan yang sudah selesai.
+
+## Copyright
+
+Made by Aji Saka team &copy; 2023
+
+- Members: <br>
+  - Muhammad Gimnastiar<br>
+  - Angelina Meriana<br>
+  - Fajar Alfian Simanjuntak<br>
+  - Maulina Alfiyatur Rohmaniyah<br>
+  - Syafina Audia Akira Winarto<br>
+  - Yoga Al Hafsy<br>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-
 
 ## Available Scripts
 
