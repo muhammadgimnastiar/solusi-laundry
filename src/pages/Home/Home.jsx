@@ -1,8 +1,11 @@
 import React from 'react'
 
+
+import Hero from '../../components/Hero/Hero';
+
 function Home() {
     return ( 
-        <h1>Ini Home</h1>
+        <Hero/>
      );
 }
 
