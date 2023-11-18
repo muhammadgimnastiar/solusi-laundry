@@ -6,13 +6,10 @@ module.exports = withMT({
   ],
   theme: {
     extend: {
-
-
       colors: {
-        "yellow": "#EDFE45",
-        "primary-orange": "#FA8F21",
-        "secondary-orange": "#FFCF9D",
-        "bg": "#FFFFEF"
+        "primary-blue": "#1D4E9D",
+        "secondary-blue": "#00A2E9",
+        "bg": "#EFFEFF"
       },
       fontFamily: {
         "poppins": '"Poppins"',
