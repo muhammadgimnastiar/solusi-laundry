@@ -8,7 +8,7 @@ function Hero() {
         <div className="grid grid-cols-12">
           <div className="col-span-12 lg:col-span-7 order-2 lg:order-1 ">
             <div className="justify-center xl:justify-start">
-              <h1 className="font-inter font-bold text-3xl lg:text-6xl tracking-tight text-center lg:text-start">
+              <h1 className="font-poppins font-bold text-3xl lg:text-6xl tracking-tight text-center lg:text-start w-[75%]">
                 Hadir untuk memberikan{" "}
                 <span className="text-primary-blue">Solusi Laundry</span> anda
               </h1>
