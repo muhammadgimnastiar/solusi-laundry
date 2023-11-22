@@ -46,10 +46,10 @@ function Home() {
             <h5 className="text-white font-inter font-bold text-[28px] mb-14">
               Testimoni
             </h5>
-            <div className="grid grid-cols-2 md:grid-cols-4 mx-auto gap-16 ps-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 mx-auto gap-8 md:gap-16 lg:p-12 ps-8 lg:ps-16">
               {Testimoni.map((testi) => {
                 return (
-                  <div className="w-[150px] h-[200px] md:w-[190px] md:h-[250px] z-10 bg-primary-blue  rounded-[20px]  before:bg-tersier-blue relative before:absolute before:top-3 before:right-4 before:w-full before:h-full before:rounded-[20px]">
+                  <div className="w-[170px] h-[240px] md:w-[190px] md:h-[250px] z-10 bg-primary-blue  rounded-[20px]  before:bg-tersier-blue relative before:absolute before:top-3 before:right-4 before:w-full before:h-full before:rounded-[20px]">
                     <img
                       src={testi.img}
                       alt=""
