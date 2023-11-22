@@ -8,6 +8,7 @@ import Hero from "../../components/Hero/Hero";
 function Home() {
   return (
     <>
+      <div className="bg-bg">
       <Hero />
 
       <Button
@@ -16,6 +17,7 @@ function Home() {
       >
         <i className="fab fa-whatsapp text-lg" />
       </Button>
+      </div>
     </>
   );
 }
