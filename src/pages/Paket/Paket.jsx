@@ -13,11 +13,11 @@ function Paket() {
             <div className='flex flex-col items-start'>
             <p className='px-2 pt-2 text-2xl font-bold'>Paket Bulanan</p>
             <p className='px-2 text-xl font-semibold'>Rp. 100.000</p>
-            <ul className='list-disc flex flex-col px-10 pt-20 pb-5 items-start'>
-            <li >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, provident.</li>
-            <li >Lorem ipsum dolor,.</li>
-            <li >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, provident.</li>
-            <li >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, provident.</li>
+            <ul className='list-disc flex flex-col px-10 pt-10 pb-5 items-start'>
+            <li >Harga berlaku untuk cuci setrika dan antar jemput max 18 Kg (jika lebih dr 18 kg, maka ada tambahan 5.5k/kg) </li>
+            <li >Harga berlaku per orang</li>
+            <li >Paket tidak temasuk selimut, seprei, bed cover, sepatu, tas, topi</li>
+            <li >Paket dihitung per 30 hari</li>
             </ul>
         </div>
         </div>
