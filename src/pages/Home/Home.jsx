@@ -13,7 +13,7 @@ function Home() {
 
           {/* Mengapa */}
           <div className="w-full bg-secondary-blue py-10 text-center mt-24 mb-8 rounded-full">
-            <h5 className="text-white font-inter font-bold text-[28px]">
+            <h5 className="text-white font-inter font-bold text-lg md:text-[28px]">
               Mengapa Memilih Kami
             </h5>
           </div>
@@ -28,11 +28,11 @@ function Home() {
 
           {/* Layanan */}
           <div className="w-full bg-primary-blue py-10 text-center mt-24 mb-8 rounded-full">
-            <h5 className="text-white font-inter font-bold text-[28px]">
+            <h5 className="text-white font-inter font-bold text-lg md:text-[28px]">
               Layanan Kami
             </h5>
           </div>
-          <ul className="grid grid-cols-2 gap-5 ps-5">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-5 ps-5">
             {Layanan.map((layanan) => (
               <div className="flex gap-4">
                 <div className="flex-none w-[33px] h-[33px] bg-primary-blue rounded-full "></div>
@@ -46,7 +46,7 @@ function Home() {
             <h5 className="text-white font-inter font-bold text-[28px] mb-14">
               Testimoni
             </h5>
-            <div className="grid grid-cols-2 lg:grid-cols-4 mx-auto gap-8 md:gap-16 lg:p-12 ps-8 lg:ps-16">
+            <div className="grid grid-cols-2 lg:grid-cols-4 mx-auto gap-8 md:gap-16 lg:p-12 ps-2md:ps-8 lg:ps-16">
               {Testimoni.map((testi) => {
                 return (
                   <div className="w-[170px] h-[240px] md:w-[190px] md:h-[250px] z-10 bg-primary-blue  rounded-[20px]  before:bg-tersier-blue relative before:absolute before:top-3 before:right-4 before:w-full before:h-full before:rounded-[20px]">
