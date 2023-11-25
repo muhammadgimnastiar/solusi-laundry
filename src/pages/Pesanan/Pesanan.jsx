@@ -1,5 +1,6 @@
 import React from "react";
-
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { Input } from "@material-tailwind/react";
 export function Pesanan() {
   return (
     <>
@@ -12,11 +13,19 @@ export function Pesanan() {
           <br />
         </div>
       </div>
-      <div className="w-[400px] h-[43px] relative">
+      {/* <div className="w-[400px] h-[43px] relative">
         <div className="w-[355px] h-[43px] left-10 top-5 absolute bg-white rounded-[10px] border border-black" />
         <div className="w-[30px] h-[30px] left-[315px] top-[7px] absolute rounded-[10px]" />
         <div className="w-[94px] left-[45px] top-[28px] absolute text-center text-black text-opacity-60 text-lg font-normal font-['Inter']">
           Pencarian
+        </div>
+      </div> */}
+      <div className="w-[400px] h-[43px] relative">
+        <div className="w-full md:w-72 absolute left-10 top-5 text-lg font-normal font-inter">
+          <Input
+            label="Pencarian"
+            icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+          />
         </div>
       </div>
       <div className="overflow-scroll">
