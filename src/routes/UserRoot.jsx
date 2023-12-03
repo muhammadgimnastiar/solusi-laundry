@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "../components/Navbar/Navbar";
 import Icons from "../assets/css/icons";
-import Footer from "../components/Footer/Footer";
-import Home from "../pages/Home/Home";
 import { Outlet } from "react-router-dom";
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
+
 export default function Root() {
   return (
     <>
@@ -12,8 +12,16 @@ export default function Root() {
       <div id="content">
         <Outlet />
       </div>
-
       <Footer />
     </>
   );
+  // ) : (
+  //   <Navigate to="/admin" />
+  // );
+  // <>
+  //   <Icons />
+  //   <div id="content">
+  //     <Outlet />
+  //   </div>
+  // </>
 }
