@@ -1,33 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../utils/AuthContext";
+
+import useAuth from "../../appwriteconfig";
+import { Client, Account } from "appwrite";
 
 function Login() {
-  const { user, loginUser } = useAuth();
+  // Apprite config
+  const client = new Client()
+    .setEndpoint("https://cloud.appwrite.io/v1") // Your API Endpoint
+    .setProject("656af734352918d1a3cd");
+  const account = new Account(client);
 
-  const [input, setinput] = useState({});
-
+  const [user, setUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user) {
-      navigate("/admin/pesanan");
-    }
-  });
+  //   const { login } = useAuth;
 
   const handleChange = (e) => {
-    setinput({ ...input, [e.target.name]: e.target.value });
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const email = input.email;
-    const password = input.password;
-
-    const userInfo = { email, password };
-
-    loginUser(userInfo);
+    try {
+      console.log("Try login: " + user.email + " " + user.password);
+      //   await login(user.email, user.password);
+      let response = await account.createEmailSession(
+        user.email,
+        user.password
+      );
+      let accountDetail = await account.get();
+      setCurrentUser(accountDetail);
+      console.log(
+        "Cuurent user " + accountDetail.$id + " " + accountDetail.email
+      );
+      navigate("/pesanan");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -36,12 +48,12 @@ function Login() {
         <h1 className="text-4xl font-bold text-center mb-6">Masuk Akun</h1>
         <form onSubmit={handleSubmit}>
           <div className="relative my-4">
-            <label htmlFor="">inputname</label>
+            <label htmlFor="">Username</label>
             <input
               type="text"
               className="block rounded-xl w-72 py-2.5 px-0 text-sm text-black border-0 border-b-2 focus:outline-none focus:border-blue-gray-500 focus:ring-blue-gray-500 focus:ring-1 peer"
-              value={input.email}
-              onChange={(e) => setinput({ ...input, email: e.target.value })}
+              value={user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
           </div>
           <div className="relative my-4">
@@ -49,8 +61,8 @@ function Login() {
             <input
               type="password"
               className="block rounded-xl w-72 py-2.5 px-0 text-sm text-black border-0 border-b-2 focus:outline-none focus:border-blue-gray-500 focus:ring-blue-gray-500 focus:ring-1 peer"
-              value={input.password}
-              onChange={(e) => setinput({ ...input, password: e.target.value })}
+              value={user.password}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
             />
           </div>
           <button
