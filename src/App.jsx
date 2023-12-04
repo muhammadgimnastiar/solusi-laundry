@@ -1,6 +1,6 @@
 import React from "react";
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 // import styling dari tailwind
 import "../src/assets/css/tailwind.css";
 
@@ -12,17 +12,41 @@ import Paket from "./pages/Paket/Paket";
 import Icons from "./assets/css/icons";
 import AdminLogin from "./pages/Admin/Login";
 import UserRoot from "./routes/UserRoot";
-import { NotFound } from "./pages/NotFound/NotFound";
+import NotFound from "./pages/NotFound/NotFound";
 import { Dashboard } from "./pages/Admin/Dasboard";
-import AdminRoot from "./routes/AdminRoot";
 import AddPesanan from "./pages/Admin/AddPesanan";
 import AddUser from "./pages/Admin/AddPesanan";
 import EditUser from "./pages/Admin/EditPesanan";
 import UserList from "./pages/Admin/PesananList";
 
-import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { AuthProvider } from "./utils/AuthContext";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <Icons />
+        <Routes>
+          <Route element={<UserRoot />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/pesanan" element={<Pesanan />} />
+            <Route path="/paket" element={<Paket />} />
+          </Route>
+          <Route path="/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<ProtectedRoute />}>
+            <Route path="" element={<AdminLogin />} />
+            <Route path="pesanan/add" element={<AddPesanan />} />
+            <Route path="list" element={<UserList />} />
+            <Route path="pesanan/edit/:id" element={<EditUser />} />
+            <Route path="pesanan" element={<Dashboard />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
+  );
+}
 // const router = createBrowserRouter([
 //   {
 //     path: "/",
@@ -76,26 +100,3 @@ import { AuthProvider } from "./utils/AuthContext";
 // export default function App() {
 //   return <RouterProvider router={router} />;
 // }
-
-export default function App() {
-  return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Icons />
-        <Routes>
-          <Route element={<UserRoot />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/pesanan" element={<Pesanan />} />
-            <Route path="/paket" element={<Paket />} />
-          </Route>
-          <Route element={<AdminRoot />}>
-            <Route path="/admin" element={<AdminLogin />} />
-            <Route path="/add" element={<AddPesanan />} />
-            <Route path="/list/edit/:id" element={<EditUser />} />
-            <Route path="/admin/pesanan" element={<Dashboard />} />
-          </Route>
-        </Routes>
-      </AuthProvider>
-    </BrowserRouter>
-  );
-}

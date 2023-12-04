@@ -13,10 +13,13 @@ import {
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
-
+import { useAuth } from "../../utils/AuthContext";
+import React, { useState, useEffect } from "react";
+import api from "../../api/AxiosConfig";
+import { Link } from "react-router-dom";
 
 const TABLE_HEAD = [
-  "Nama",
+  "name",
   "Status Pesanan",
   "Paket",
   "Status Pembayaran",
@@ -24,55 +27,27 @@ const TABLE_HEAD = [
   "",
 ];
 
-const TABLE_ROWS = [
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-    nama: "John Michael",
-    status: "Baru",
-    paket: "Reguler Setrika",
-    amount: "3",
-    status_payment: true,
-    total: "20000",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
-    nama: "Alexa Liras",
-    status: "Baru",
-    paket: "Reguler Setrika",
-    amount: "3",
-    status_payment: false,
-    total: "20000",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
-    nama: "Laurent Perrier",
-    status: "Baru",
-    paket: "Kilat",
-    amount: "4",
-    status_payment: false,
-    total: "20000",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg",
-    nama: "Michael Levi",
-    status: "Baru",
-    paket: "Reguler Setrika",
-    amount: "3",
-    status_payment: true,
-    total: "20000",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg",
-    nama: "Richard Gran",
-    status: "Baru",
-    paket: "Reguler Setrika",
-    amount: "5",
-    status_payment: false,
-    total: "20000",
-  },
-];
-
 export function Dashboard() {
+  const [users, setUser] = useState([]);
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  const getUsers = async () => {
+    const response = await api.get("/users");
+    setUser(response.data);
+  };
+
+  const deleteUser = async (id) => {
+    try {
+      await api.delete(`/users/${id}`);
+      getUsers();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const { logoutUser } = useAuth();
   return (
     <div className="bg-bg ">
       <Card className="h-full w-full" shadow={false}>
@@ -91,12 +66,18 @@ export function Dashboard() {
               </Typography>
             </div>
             <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-              <Button variant="outlined" size="sm">
-                view all
+              <Button variant="outlined" size="sm" onClick={() => logoutUser()}>
+                Logout
               </Button>
-              <Button className="flex items-center gap-3" size="sm">
-                <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add member
-              </Button>
+              <Link to={"add"}>
+                <Button
+                  className="flex items-center gap-3 bg-primary-blue"
+                  size="sm"
+                >
+                  <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Tambah
+                  Pesanan
+                </Button>
+              </Link>
             </div>
           </div>
 
@@ -128,29 +109,32 @@ export function Dashboard() {
               </tr>
             </thead>
             <tbody>
-              {TABLE_ROWS.map(
-                (
-                  { img, nama, status, paket, amount, status_payment, total },
-                  index
-                ) => {
-                  const isLast = index === TABLE_ROWS.length - 1;
+              {users.map(
+                ({ id, name, status, paket, berat, total, dibayar }, index) => {
+                  const isLast = index === users.length - 1;
                   const classes = isLast
                     ? "p-4"
                     : "p-4 border-b border-blue-gray-50";
 
                   return (
-                    <tr key={nama}>
-                      {/* Nama */}
+                    <tr key={name}>
+                      {/* name */}
                       <td className={classes}>
                         <div className="flex items-center gap-3">
-                          <Avatar src={img} alt={nama} size="sm" />
+                          <Avatar
+                            src={
+                              "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
+                            }
+                            alt={name}
+                            size="sm"
+                          />
 
                           <Typography
                             variant="small"
                             color="blue-gray"
                             className="font-normal"
                           >
-                            {nama}
+                            {name}
                           </Typography>
                         </div>
                       </td>
@@ -180,7 +164,7 @@ export function Dashboard() {
                             color="blue-gray"
                             className="font-normal opacity-70"
                           >
-                            {amount} kg
+                            {berat} kg
                           </Typography>
                         </div>
                       </td>
@@ -190,8 +174,8 @@ export function Dashboard() {
                           <Chip
                             variant="ghost"
                             size="sm"
-                            value={status_payment ? "Lunas" : "Belum Lunas"}
-                            color={status_payment ? "green" : "blue-gray"}
+                            value={dibayar ? "Lunas" : "Belum Lunas"}
+                            color={dibayar ? "green" : "blue-gray"}
                           />
                         </div>
                       </td>
@@ -208,9 +192,11 @@ export function Dashboard() {
                       {/* Edit User */}
                       <td className={classes}>
                         <Tooltip content="Edit User">
-                          <IconButton variant="text">
-                            <PencilIcon className="h-4 w-4" />
-                          </IconButton>
+                          <Link to={`edit/${id}`}>
+                            <IconButton variant="text">
+                              <PencilIcon className="h-4 w-4" />
+                            </IconButton>
+                          </Link>
                         </Tooltip>
                       </td>
                     </tr>
@@ -222,7 +208,7 @@ export function Dashboard() {
         </CardBody>
         <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
           <Typography variant="small" color="blue-gray" className="font-normal">
-            Page 1 of 10
+            Page 1 of 1
           </Typography>
           <div className="flex gap-2">
             <Button variant="outlined" size="sm">
