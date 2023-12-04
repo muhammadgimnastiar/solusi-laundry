@@ -1,9 +1,9 @@
 import { useRouteError } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import Navbar from "../../components/Navbar/Navbar";
-export function NotFound() {
-  const error = useRouteError();
-  console.error(error);
+export default function NotFound() {
+  // const error = useRouteError();
+  // console.error(error);
   return (
     <>
       <Navbar />
@@ -12,17 +12,17 @@ export function NotFound() {
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-span-7 order-2 lg:order-1 ">
               <div className="justify-center xl:justify-start">
-                <h1 className="font-inter font-bold text-3xl lg:text-6xl tracking-tight text-center lg:text-start">
-                  Oops!! <br />{" "}
-                  <span className="text-primary-blue">
-                    Ada yang salah <br />
-                  </span>{" "}
+                <h1 className="font-poppins font-bold text-3xl lg:text-6xl  text-center lg:text-start">
+                  Oops!! <br /> <span className="text-red-600">Ada yang</span>{" "}
+                  <span className="py-1 text-red-600">
+                    salah <br />
+                  </span>
                   di halaman yang anda tuju
                 </h1>
               </div>
-              <div className="gap-2 mx-auto flex justify-center xl:justify-start py-32">
+              <div className="gap-2 mx-auto flex justify-center xl:justify-start py-16 md:py-32">
                 <Button className="bg-primary-blue rounded-xl px-8 py-3 font-inter font-semibold text-bg ">
-                  Homepage
+                  Kembali ke Homepage
                 </Button>
               </div>
             </div>
