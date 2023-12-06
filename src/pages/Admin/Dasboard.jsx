@@ -19,7 +19,7 @@ import api from "../../api/AxiosConfig";
 import { Link } from "react-router-dom";
 
 const TABLE_HEAD = [
-  "name",
+  "Nama",
   "Status Pesanan",
   "Paket",
   "Status Pembayaran",
@@ -33,21 +33,17 @@ const TABLE_HEAD = [
 // }
 export function Dashboard() {
   const [users, setUser] = useState([]);
-  const [paket, setPaket] = useState([]);
 
   useEffect(() => {
     getUsers();
-    getPaket();
+
   }, []);
 
   const getUsers = async () => {
     const response = await api.get("/users");
     setUser(response.data);
   };
-  const getPaket = async () => {
-    const response = await api.get("/pakets");
-    setPaket(response.data);
-  };
+
 
   const deleteUser = async (id) => {
     try {
@@ -77,7 +73,7 @@ export function Dashboard() {
             </div>
             <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
               <Button variant="outlined" size="sm" onClick={() => logoutUser()}>
-                Logout
+                Keluar
               </Button>
               <Link to={"add"}>
                 <Button
@@ -220,14 +216,14 @@ export function Dashboard() {
         </CardBody>
         <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
           <Typography variant="small" color="blue-gray" className="font-normal">
-            Page 1 of 1
+            Halaman 1 dari 1
           </Typography>
           <div className="flex gap-2">
             <Button variant="outlined" size="sm">
-              Previous
+              Sebelumnya
             </Button>
             <Button variant="outlined" size="sm">
-              Next
+              Selanjutnya
             </Button>
           </div>
         </CardFooter>
