@@ -1,26 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import api from "../../api/AxiosConfig";
 import { useNavigate } from "react-router-dom";
+import {
+  Input,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from "@material-tailwind/react";
 
 const AddUser = () => {
   const [name, setName] = useState("");
   const [berat, setBerat] = useState("");
   const [status, setStatus] = useState("Baru");
-  const [paket, setPaket] = useState("");
+  const [paketId, setPaketId] = useState("1");
   const [total, setTotal] = useState("");
-  const [dibayar, setBayar] = useState("");
+  const [dibayar, setBayar] = useState("1");
   const navigate = useNavigate();
 
+  const [paketOption, setPaketOption] = useState([]);
+  const [currentPaket, setCurrentPaket] = useState({ harga: 0 });
+
+  useEffect(() => {
+    getPaketOption();
+  }, []);
+
+  useEffect(() => {
+    getCurrentPaketById(paketId);
+    setTotal(currentPaket.harga * berat);
+  }, [paketId, berat]);
+
+  const getPaketOption = async () => {
+    const response = await api.get("/pakets");
+    setPaketOption(response.data);
+  };
+  const getCurrentPaketById = async (id) => {
+    const response = await api.get(`/pakets/${id}`);
+    setCurrentPaket(response.data);
+  };
   const saveUser = async (e) => {
     e.preventDefault();
     try {
       await api.post("/Users", {
         name,
         status,
-        paket,
         berat,
         total,
         dibayar,
+        paketId,
       });
       navigate("/admin/pesanan");
     } catch (error) {
@@ -65,18 +93,36 @@ const AddUser = () => {
               {/* Paket */}
               <div className="field">
                 <label className="label">Paket</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input rounded-xl py-3 px-2 border border-blue-gray-800 min-w-full mt-2 mb-4"
-                    value={paket}
-                    onChange={(e) => setPaket(e.target.value)}
-                    placeholder="Dibayar"
-                  />
-                </div>
+                <select
+                  value={paketId}
+                  onChange={(e) => {
+                    setPaketId(e.target.value);
+                  }}
+                  class="block w-full input rounded-xl py-3 px-2 border border-blue-gray-800 mt-2 mb-4"
+                >
+                  {paketOption.map(({ id, name }, index) => {
+                    return (
+                      <>
+                        <option value={id}>{name}</option>
+                      </>
+                    );
+                  })}
+                </select>
               </div>
               {/* Pembayaran */}
               <div className="field">
+                <label className="label">Status Pembayaran</label>
+                <select
+                  value={dibayar}
+                  onChange={(e) => setBayar(e.target.value)}
+                  class="block w-full input rounded-xl py-3 px-2 border border-blue-gray-800 mt-2 mb-4"
+                >
+                  <option value="1">Lunas</option>
+                  <option value="0">Belum Bayar</option>
+                </select>
+              </div>
+              {/* Pembayaran */}
+              {/* <div className="field">
                 <label className="label">Pembayaran</label>
                 <div className="control">
                   <input
@@ -87,7 +133,7 @@ const AddUser = () => {
                     placeholder="Dibayar"
                   />
                 </div>
-              </div>
+              </div> */}
               {/* Total Bayar */}
               <div className="field">
                 <label className="label">Total bayar</label>
@@ -95,7 +141,7 @@ const AddUser = () => {
                   <input
                     type="text"
                     className="input rounded-xl py-3 px-2 border border-blue-gray-800 min-w-full mt-2 mb-4"
-                    value={total}
+                    value={currentPaket.harga * berat}
                     onChange={(e) => setTotal(e.target.value)}
                     placeholder="Total"
                   />
