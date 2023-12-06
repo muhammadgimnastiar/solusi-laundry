@@ -1,4 +1,3 @@
-import { useRouteError } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import Navbar from "../../components/Navbar/Navbar";
 export default function NotFound() {
