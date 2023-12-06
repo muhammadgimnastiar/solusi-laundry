@@ -6,14 +6,22 @@ const EditUser = () => {
   const [name, setName] = useState("");
   const [berat, setBerat] = useState("");
   const [status, setStatus] = useState("Baru");
-  const [paket, setPaket] = useState("");
+  const [paketId, setPaketId] = useState("");
   const [total, setTotal] = useState("");
-  const [dibayar, setBayar] = useState("");
+  const [dibayar, setBayar] = useState("0");
   const { id } = useParams();
   const navigate = useNavigate();
+  const [paketOption, setPaketOption] = useState([]);
+
   useEffect(() => {
     getUserById();
+    getPaketOption();
   }, []);
+
+  const getPaketOption = async () => {
+    const response = await api.get("/pakets");
+    setPaketOption(response.data);
+  };
 
   const updateUser = async (e) => {
     e.preventDefault();
@@ -21,7 +29,7 @@ const EditUser = () => {
       await api.patch(`/Users/${id}`, {
         name,
         status,
-        paket,
+        paketId,
         berat,
         total,
         dibayar,
@@ -33,10 +41,10 @@ const EditUser = () => {
   };
 
   const getUserById = async () => {
-    const response = await api.get(`http://localhost:5000/Users/${id}`);
+    const response = await api.get(`/Users/${id}`);
     setName(response.data.name);
     setStatus(response.data.status);
-    setPaket(response.data.paket);
+    setPaketId(response.data.paketId);
     setBerat(response.data.berat);
     setTotal(response.data.total);
     setBayar(response.data.dibayar);
@@ -63,7 +71,20 @@ const EditUser = () => {
                   />
                 </div>
               </div>
-              {/* Status Pesanan */}
+              {/* Paket */}
+              <div className="field">
+                <label className="label">Status</label>
+                <select
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                  class="block w-full input rounded-xl py-3 px-2 border border-blue-gray-800 mt-2 mb-4"
+                >
+                  <option value="Baru">Baru</option>
+                  <option value="Proses">Proses</option>
+                  <option value="Selesai">Selesai</option>
+                </select>
+              </div>
+              {/* berat Pesanan */}
               <div className="field">
                 <label className="label">Berat</label>
                 <div className="control">
@@ -79,28 +100,31 @@ const EditUser = () => {
               {/* Paket */}
               <div className="field">
                 <label className="label">Paket</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input rounded-xl py-3 px-2 border border-blue-gray-800 min-w-full mt-2 mb-4"
-                    value={paket}
-                    onChange={(e) => setPaket(e.target.value)}
-                    placeholder="Dibayar"
-                  />
-                </div>
+                <select
+                  value={paketId}
+                  onChange={(e) => setPaketId(e.target.value)}
+                  class="block w-full input rounded-xl py-3 px-2 border border-blue-gray-800 mt-2 mb-4"
+                >
+                  {paketOption.map(({ id, name }, index) => {
+                    return (
+                      <>
+                        <option value={id}>{name}</option>
+                      </>
+                    );
+                  })}
+                </select>
               </div>
               {/* Pembayaran */}
               <div className="field">
-                <label className="label">Pembayaran</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input rounded-xl py-3 px-2 border border-blue-gray-800 min-w-full mt-2 mb-4"
-                    value={dibayar}
-                    onChange={(e) => setBayar(e.target.value)}
-                    placeholder="Dibayar"
-                  />
-                </div>
+                <label className="label">Status Pembayaran</label>
+                <select
+                  value={dibayar}
+                  onChange={(e) => setBayar(e.target.value)}
+                  class="block w-full input rounded-xl py-3 px-2 border border-blue-gray-800 mt-2 mb-4"
+                >
+                  <option value="1">Lunas</option>
+                  <option value="0">Belum Bayar</option>
+                </select>
               </div>
               {/* Total Bayar */}
               <div className="field">

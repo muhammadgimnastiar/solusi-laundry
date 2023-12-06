@@ -27,16 +27,26 @@ const TABLE_HEAD = [
   "",
 ];
 
+// const paket = {
+//   'Kilat' : '10000',
+//   'Reguler'
+// }
 export function Dashboard() {
   const [users, setUser] = useState([]);
+  const [paket, setPaket] = useState([]);
 
   useEffect(() => {
     getUsers();
+    getPaket();
   }, []);
 
   const getUsers = async () => {
     const response = await api.get("/users");
     setUser(response.data);
+  };
+  const getPaket = async () => {
+    const response = await api.get("/pakets");
+    setPaket(response.data);
   };
 
   const deleteUser = async (id) => {
@@ -157,14 +167,16 @@ export function Dashboard() {
                             color="blue-gray"
                             className="font-normal"
                           >
-                            {paket}
+                            {paket.name}
                           </Typography>
                           <Typography
                             variant="small"
                             color="blue-gray"
                             className="font-normal opacity-70"
                           >
-                            {berat} kg
+                            {paket.waktu < 24 ? paket.waktu : paket.waktu / 24}
+                            {paket.waktu < 24 ? <> Jam</> : <> Hari</>} ({" "}
+                            {berat} kg )
                           </Typography>
                         </div>
                       </td>
