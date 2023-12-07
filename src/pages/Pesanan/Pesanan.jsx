@@ -126,9 +126,9 @@ export function Pesanan() {
                           size="sm"
                           value={status}
                           color={
-                            status == "Selesai"
+                            status === "Selesai"
                               ? "green"
-                              : status == "Proses"
+                              : status === "Proses"
                               ? "blue"
                               : "blue-gray"
                           }
