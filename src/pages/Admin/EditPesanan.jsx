@@ -53,11 +53,11 @@ const EditUser = () => {
   return (
     <div className="bg-bg min-h-screen">
       <div className="container mx-auto">
-        <div className="columns mt-5 is-centered">
+        <div className="columns is-centered">
           <h1 className="text-center text-4xl font-extrabold font-poppins py-10">
             Update Pesanan
           </h1>
-          <div className="column is-half">
+          <div className="column is-half px-4 md:px-0">
             <form onSubmit={updateUser}>
               <div className="field">
                 <label className="label">Nama</label>

@@ -1,5 +1,6 @@
 import { Button } from "@material-tailwind/react";
 import Navbar from "../../components/Navbar/Navbar";
+import WhatsappFloating from "../../components/FloatingButton/WhatsappFloating";
 export default function NotFound() {
   // const error = useRouteError();
   // console.error(error);
@@ -29,6 +30,7 @@ export default function NotFound() {
               <img src="./images/hero.png" className="items-center" alt="" />
             </div>
           </div>
+          <WhatsappFloating />
         </div>
       </div>
     </>
