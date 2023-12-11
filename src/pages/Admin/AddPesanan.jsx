@@ -58,11 +58,11 @@ const AddUser = () => {
 
   return (
     <div className="bg-bg min-h-screen">
-      <div className="container mx-auto mt-5">
+      <div className="container mx-auto">
         <h1 className="text-center text-4xl font-extrabold font-poppins py-10">
           Tambah Pesanan
         </h1>
-        <div className="columns mt-5 is-centered">
+        <div className="columns mt-5 is-centered px-4 md:px-0">
           <div className="column is-half">
             <form onSubmit={saveUser}>
               <div className="field">

@@ -36,14 +36,12 @@ export function Dashboard() {
 
   useEffect(() => {
     getUsers();
-
   }, []);
 
   const getUsers = async () => {
     const response = await api.get("/users");
     setUser(response.data);
   };
-
 
   const deleteUser = async (id) => {
     try {
@@ -56,13 +54,13 @@ export function Dashboard() {
   const { logoutUser } = useAuth();
   return (
     <div className="bg-bg ">
-      <Card className="h-full w-full" shadow={false}>
+      <Card className="h-full w-full " shadow={false}>
         <CardHeader
           floated={false}
           shadow={false}
           className="rounded-none container mx-auto"
         >
-          <div className="mb-8 flex items-center justify-between gap-8">
+          <div className="mb-8 flex items-center justify-between gap-8 px-4 md:px-0">
             <div>
               <Typography variant="h5" color="blue-gray">
                 Daftar Pesanan
@@ -87,7 +85,7 @@ export function Dashboard() {
             </div>
           </div>
 
-          <div className="w-full md:w-72">
+          <div className="w-full md:w-72 px-4 md:px-0">
             <Input
               label="Pencarian"
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}
@@ -145,14 +143,22 @@ export function Dashboard() {
                         </div>
                       </td>
                       {/* Status Pesanan */}
+
                       <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {status}
-                        </Typography>
+                        <div className="w-max">
+                          <Chip
+                            variant="ghost"
+                            size="sm"
+                            value={status}
+                            color={
+                              status === "Selesai"
+                                ? "green"
+                                : status === "Proses"
+                                ? "yellow"
+                                : "blue-gray"
+                            }
+                          />
+                        </div>
                       </td>
 
                       {/* Paket */}
