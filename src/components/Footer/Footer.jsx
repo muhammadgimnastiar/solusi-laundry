@@ -15,13 +15,13 @@ function Footer() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <h1 className="font-bold pb-8">Quick Links</h1>
+            <h1 className="font-bold pb-8">Navigasi</h1>
             <ul>
               <li className="pb-5">Produk</li>
               <li>Informasi</li>
             </ul>
           </div>
-          <div className="">
+          <div className="pt-14">
             <ul>
               <li className="pb-5">Perusahaan</li>
               <li>Media</li>
@@ -29,7 +29,7 @@ function Footer() {
           </div>
         </div>
         <div>
-          <h1 className="font-bold pb-8">Subscribe</h1>
+          <h1 className="font-bold pb-8">Berlangganan</h1>
           <input
             type="text"
             placeholder="Get Product Updates"
@@ -47,9 +47,9 @@ function Footer() {
           <i className="fab fa-twitter px-8"></i>
         </div>
         <span>
-          A Product of <strong>Solusi Laundry</strong>
+          Sebuah Produk dari <strong>Solusi Laundry</strong>
         </span>
-        <span>© 2023 Lift Media. All rights reserved.</span>
+        <span>© 2023 Aji Saka. Dilindungi Hak Cipta.</span>
       </div>
     </footer>
   );

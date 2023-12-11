@@ -18,15 +18,19 @@ function Hero() {
           </h5>
         </div>
         <div className="gap-2 mx-auto flex justify-center xl:justify-start">
-          <Button className="bg-primary-blue rounded-xl px-8 py-3 font-inter font-semibold text-bg ">
-            Pesan Sekarang
-          </Button>
-          <Button
-            className="rounded-xl px-8 py-3 font-inter font-semibold "
-            variant="text"
-          >
-            Lihat Pesanan
-          </Button>
+          <a href="">
+            <Button className="bg-primary-blue rounded-xl px-8 py-3 font-inter font-semibold text-bg ">
+              Pesan Sekarang
+            </Button>
+          </a>
+          <a href="/Pesanan">
+            <Button
+              className="rounded-xl px-8 py-3 font-inter font-semibold "
+              variant="text" 
+            >
+              Lihat Pesanan
+            </Button>
+          </a>
         </div>
       </div>
       <div className="col-span-12 lg:col-span-5 order-1 ">
