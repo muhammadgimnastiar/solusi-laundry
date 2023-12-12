@@ -33,7 +33,7 @@ function Hero() {
           </a>
         </div>
       </div>
-      <div className="col-span-12 lg:col-span-5 order-1 ">
+      <div className="col-span-12 lg:col-span-5 order-1 transition-all duration-300 hover:scale-105 hover:opacity-80">
         <img src="./images/hero.png" className="items-center" alt="" />
       </div>
     </div>

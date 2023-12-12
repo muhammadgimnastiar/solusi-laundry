@@ -36,14 +36,12 @@ export function Dashboard() {
 
   useEffect(() => {
     getUsers();
-
   }, []);
 
   const getUsers = async () => {
     const response = await api.get("/users");
     setUser(response.data);
   };
-
 
   const deleteUser = async (id) => {
     try {
@@ -62,7 +60,9 @@ export function Dashboard() {
           shadow={false}
           className="rounded-none container mx-auto"
         >
+
           <div className="mb-8 ml-6 flex items-center justify-between gap-8">
+
             <div>
               <Typography variant="h5" color="blue-gray">
                 Daftar Pesanan
@@ -145,14 +145,22 @@ export function Dashboard() {
                         </div>
                       </td>
                       {/* Status Pesanan */}
+
                       <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal ml-7"
-                        >
-                          {status}
-                        </Typography>
+                        <div className="w-max">
+                          <Chip
+                            variant="ghost"
+                            size="sm"
+                            value={status}
+                            color={
+                              status === "Selesai"
+                                ? "green"
+                                : status === "Proses"
+                                ? "yellow"
+                                : "blue-gray"
+                            }
+                          />
+                        </div>
                       </td>
 
                       {/* Paket */}

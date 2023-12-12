@@ -62,6 +62,7 @@ const AddUser = () => {
         <h1 className="text-center text-4xl font-extrabold font-poppins py-10">
           Tambah Pesanan
         </h1>
+
         <div className="columns mx-8 is-centered">
           <div className="column is-half">
             <form onSubmit={saveUser}>

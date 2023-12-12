@@ -58,6 +58,7 @@ const EditUser = () => {
             Update Pesanan
           </h1>
           <div className="column is-half mx-8">
+
             <form onSubmit={updateUser}>
               <div className="field">
                 <label className="label">Nama</label>

@@ -17,6 +17,7 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import WhatsappFloating from "../../components/FloatingButton/WhatsappFloating";
 
 const TABLE_HEAD = ["Nama", "Status Pesanan", "Paket", "Total Bayar"];
 
@@ -37,7 +38,7 @@ export function Pesanan() {
         <CardHeader
           floated={false}
           shadow={false}
-          className="rounded-none container mx-auto"
+          className="rounded-none container mx-auto px-4 lg:"
         >
           <div className="mb-8 ml-6 flex items-center justify-between gap-8">
             <div>
@@ -129,7 +130,7 @@ export function Pesanan() {
                             status === "Selesai"
                               ? "green"
                               : status === "Proses"
-                              ? "blue"
+                              ? "yellow"
                               : "blue-gray"
                           }
                         />
@@ -187,6 +188,7 @@ export function Pesanan() {
             </Button>
           </div>
         </CardFooter>
+        <WhatsappFloating />
       </Card>
     </div>
   );

@@ -1,7 +1,8 @@
-import React from 'react'
-import '../../assets/css/tailwind.css'
-import '../../index.css'
-import GridCard from './GridCard'
+import React from "react";
+import "../../assets/css/tailwind.css";
+import "../../index.css";
+import GridCard from "./GridCard";
+import WhatsappFloating from "../../components/FloatingButton/WhatsappFloating";
 
 function Paket() {
     return (
@@ -18,14 +19,17 @@ function Paket() {
             <li className='text-white'>Harga berlaku per orang</li>
             <li className='text-white'>Paket tidak temasuk selimut, seprei, bed cover, sepatu, tas, topi</li>
             <li className='text-white'>Paket dihitung per 30 hari</li>
+
             </ul>
-        </div>
+          </div>
         </div>
         <div>
-            <GridCard  />
+          <GridCard />
         </div>
-        </div>
-    )
+        <WhatsappFloating />
+      </div>
+    </div>
+  );
 }
 
-export default Paket
+export default Paket;
