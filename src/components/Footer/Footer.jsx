@@ -34,7 +34,7 @@ function Footer() {
           </div>
         </div>
 
-        <div>
+        {/* <div>
           <h1 className="font-bold pb-8">Berlangganan</h1>
           <input
             type="text"
@@ -44,7 +44,7 @@ function Footer() {
           <button className="bg-blue-500 hover:bg-blue-700 duration-300 px-5 py-2.5 rounded-md text-white">
             <i className="fas fa-arrow-right w-10"></i>
           </button>
-        </div>
+        </div> */}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center pt-2 text-gray-400 text-sm pb-8">
         <div className="cursor-pointer">

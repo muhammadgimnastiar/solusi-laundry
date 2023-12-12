@@ -47,17 +47,6 @@ export function Pesanan() {
                 Lihat semua informasi pesanan pelanggan
               </Typography>
             </div>
-            <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-              <Link to={"add"}>
-                <Button
-                  className="flex items-center gap-3 bg-primary-blue"
-                  size="sm"
-                >
-                  <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Tambah
-                  Pesanan
-                </Button>
-              </Link>
-            </div>
           </div>
 
           <div className="w-full md:w-72 ml-6">
