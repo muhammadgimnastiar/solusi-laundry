@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@material-tailwind/react";
 
 import Hero from "../../components/Hero/Hero";
 import { Kelebihan, Layanan, Testimoni } from "./data";

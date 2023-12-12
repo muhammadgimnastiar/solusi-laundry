@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import api from "../../api/AxiosConfig";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+import { UserPlusIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   CardHeader,
@@ -13,8 +13,6 @@ import {
   Chip,
   CardFooter,
   Avatar,
-  IconButton,
-  Tooltip,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import WhatsappFloating from "../../components/FloatingButton/WhatsappFloating";

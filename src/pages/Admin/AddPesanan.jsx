@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../../api/AxiosConfig";
 import { useNavigate } from "react-router-dom";
-import {
-  Input,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Button,
-} from "@material-tailwind/react";
 
 const AddUser = () => {
   const [name, setName] = useState("");
