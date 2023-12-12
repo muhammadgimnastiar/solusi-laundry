@@ -33,14 +33,14 @@ export function Pesanan() {
     setUser(response.data);
   };
   return (
-    <div className="bg-bg ">
+    <div className="bg-bg">
       <Card className="h-full w-full" shadow={false}>
         <CardHeader
           floated={false}
           shadow={false}
           className="rounded-none container mx-auto px-4 lg:"
         >
-          <div className="mb-8 flex items-center justify-between gap-8">
+          <div className="mb-8 ml-6 flex items-center justify-between gap-8">
             <div>
               <Typography variant="h5" color="blue-gray">
                 Daftar Pesanan
@@ -62,7 +62,7 @@ export function Pesanan() {
             </div>
           </div>
 
-          <div className="w-full md:w-72">
+          <div className="w-full md:w-72 ml-6">
             <Input
               label="Pencarian"
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}
@@ -70,7 +70,7 @@ export function Pesanan() {
           </div>
         </CardHeader>
         <CardBody className="overflow-scroll px-0">
-          <table className="mt-4 w-full min-w-max table-auto text-left ">
+          <table className="mt-4 w-full min-w-max table-auto text-left">
             <thead>
               <tr>
                 {TABLE_HEAD.map((head) => (
@@ -81,7 +81,7 @@ export function Pesanan() {
                     <Typography
                       variant="normal"
                       color="white"
-                      className="font-normal leading-none"
+                      className="font-normal leading-none ml-7"
                     >
                       {head}
                     </Typography>
@@ -100,7 +100,7 @@ export function Pesanan() {
                   <tr key={name}>
                     {/* name */}
                     <td className={classes}>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3 ml-7">
                         <Avatar
                           src={
                             "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
@@ -121,7 +121,7 @@ export function Pesanan() {
                     {/* Status Pesanan */}
 
                     <td className={classes}>
-                      <div className="w-max">
+                      <div className="w-max ml-7">
                         <Chip
                           variant="ghost"
                           size="sm"
@@ -139,7 +139,7 @@ export function Pesanan() {
 
                     {/* Paket */}
                     <td className={classes}>
-                      <div className="flex flex-col">
+                      <div className="flex flex-col ml-7">
                         <Typography
                           variant="small"
                           color="blue-gray"
@@ -164,7 +164,7 @@ export function Pesanan() {
                       <Typography
                         variant="small"
                         color="blue-gray"
-                        className="font-normal"
+                        className="font-normal ml-7"
                       >
                         Rp {total}
                       </Typography>

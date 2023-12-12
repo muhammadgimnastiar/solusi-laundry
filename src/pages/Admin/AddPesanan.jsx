@@ -62,7 +62,8 @@ const AddUser = () => {
         <h1 className="text-center text-4xl font-extrabold font-poppins py-10">
           Tambah Pesanan
         </h1>
-        <div className="columns mt-5 is-centered px-4 md:px-0">
+
+        <div className="columns mx-8 is-centered">
           <div className="column is-half">
             <form onSubmit={saveUser}>
               <div className="field">
@@ -147,12 +148,12 @@ const AddUser = () => {
                   />
                 </div>
               </div>
-              <div className="field">
+              <div className="field mb-7">
                 <button
                   type="submit"
                   className="button w-28 h-[47px] p-2.5 bg-indigo-800 rounded-[15px] justify-start items-start gap-2.5 inline-flex"
                 >
-                  <h1 className="w-[92px] h-[22px] text-center text-white text-xl font-bold font-inter">
+                  <h1 className="w-[92px] h-[22px] text-center text-white text-base font-bold font-inter">
                     Tambah
                   </h1>
                 </button>

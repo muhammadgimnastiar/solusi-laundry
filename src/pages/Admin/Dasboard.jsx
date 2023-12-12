@@ -53,14 +53,16 @@ export function Dashboard() {
   };
   const { logoutUser } = useAuth();
   return (
-    <div className="bg-bg ">
-      <Card className="h-full w-full " shadow={false}>
+    <div className="bg-bg">
+      <Card className="h-full w-full" shadow={false}>
         <CardHeader
           floated={false}
           shadow={false}
           className="rounded-none container mx-auto"
         >
-          <div className="mb-8 flex items-center justify-between gap-8 px-4 md:px-0">
+
+          <div className="mb-8 ml-6 flex items-center justify-between gap-8">
+
             <div>
               <Typography variant="h5" color="blue-gray">
                 Daftar Pesanan
@@ -85,7 +87,7 @@ export function Dashboard() {
             </div>
           </div>
 
-          <div className="w-full md:w-72 px-4 md:px-0">
+          <div className="w-full md:w-72 ml-6">
             <Input
               label="Pencarian"
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}
@@ -104,7 +106,7 @@ export function Dashboard() {
                     <Typography
                       variant="normal"
                       color="white"
-                      className="font-normal leading-none"
+                      className="font-normal leading-none ml-7"
                     >
                       {head}
                     </Typography>
@@ -124,7 +126,7 @@ export function Dashboard() {
                     <tr key={name}>
                       {/* name */}
                       <td className={classes}>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 ml-7">
                           <Avatar
                             src={
                               "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
@@ -167,14 +169,14 @@ export function Dashboard() {
                           <Typography
                             variant="small"
                             color="blue-gray"
-                            className="font-normal"
+                            className="font-normal ml-7"
                           >
                             {paket.name}
                           </Typography>
                           <Typography
                             variant="small"
                             color="blue-gray"
-                            className="font-normal opacity-70"
+                            className="font-normal opacity-70 ml-7"
                           >
                             {paket.waktu < 24 ? paket.waktu : paket.waktu / 24}
                             {paket.waktu < 24 ? <> Jam</> : <> Hari</>} ({" "}
@@ -184,7 +186,7 @@ export function Dashboard() {
                       </td>
 
                       <td className={classes}>
-                        <div className="w-max">
+                        <div className="w-max ml-7">
                           <Chip
                             variant="ghost"
                             size="sm"
@@ -198,7 +200,7 @@ export function Dashboard() {
                         <Typography
                           variant="small"
                           color="blue-gray"
-                          className="font-normal"
+                          className="font-normal ml-7"
                         >
                           Rp {total}
                         </Typography>
