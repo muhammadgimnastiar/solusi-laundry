@@ -121,7 +121,7 @@ export function Pesanan() {
                 .filter((user) => {
                   return search.toLowerCase() === ""
                     ? user
-                    : user.name.toLowerCase().includes(search);
+                    : user.name.toLowerCase().includes(search.toLowerCase());
                 })
                 .filter((user) => {
                   return statusCategory === "semua"

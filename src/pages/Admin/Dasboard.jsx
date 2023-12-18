@@ -154,12 +154,14 @@ export function Dashboard() {
                 .filter((user) => {
                   return search.toLowerCase() === ""
                     ? user
-                    : user.name.toLowerCase().includes(search);
+                    : user.name.toLowerCase().includes(search.toLowerCase());
                 })
                 .filter((user) => {
                   return statusCategory === "semua"
                     ? user
-                    : user.status.toLowerCase().includes(statusCategory);
+                    : user.status
+                        .toLowerCase()
+                        .includes(statusCategory.toLowerCase());
                 })
                 .map(
                   (
