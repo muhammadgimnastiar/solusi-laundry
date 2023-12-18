@@ -10,6 +10,9 @@ import {
   Typography,
   Button,
   CardBody,
+  Tabs,
+  TabsHeader,
+  Tab,
   Chip,
   CardFooter,
   Avatar,
@@ -17,10 +20,30 @@ import {
 import { Link } from "react-router-dom";
 import WhatsappFloating from "../../components/FloatingButton/WhatsappFloating";
 
+const TABS = [
+  {
+    label: "Semua",
+    value: "semua",
+  },
+  {
+    label: "Baru",
+    value: "baru",
+  },
+  {
+    label: "Proses",
+    value: "proses",
+  },
+  {
+    label: "Selesai",
+    value: "selesai",
+  },
+];
 const TABLE_HEAD = ["Nama", "Status Pesanan", "Paket", "Total Bayar"];
 
 export function Pesanan() {
   const [users, setUser] = useState([]);
+  const [search, setSearch] = useState("");
+  const [statusCategory, setStatusCategory] = useState("");
 
   useEffect(() => {
     getUsers();
@@ -48,12 +71,29 @@ export function Pesanan() {
               </Typography>
             </div>
           </div>
-
-          <div className="w-full md:w-72 ml-6">
-            <Input
-              label="Pencarian"
-              icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-            />
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            <div className="w-full md:w-72 ml-6">
+              <Input
+                label="Pencarian"
+                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+            <Tabs value="all" className="w-full md:w-max">
+              <TabsHeader>
+                {TABS.map(({ label, value }) => (
+                  <Tab
+                    key={value}
+                    value={value}
+                    onClick={(e) => {
+                      setStatusCategory(value);
+                    }}
+                  >
+                    &nbsp;&nbsp;{label}&nbsp;&nbsp;
+                  </Tab>
+                ))}
+              </TabsHeader>
+            </Tabs>
           </div>
         </CardHeader>
         <CardBody className="overflow-scroll px-0">
@@ -77,88 +117,99 @@ export function Pesanan() {
               </tr>
             </thead>
             <tbody>
-              {users.map(({ id, name, status, paket, berat, total }, index) => {
-                const isLast = index === users.length - 1;
-                const classes = isLast
-                  ? "p-4"
-                  : "p-4 border-b border-blue-gray-50";
+              {users
+                .filter((user) => {
+                  return search.toLowerCase() === ""
+                    ? user
+                    : user.name.toLowerCase().includes(search);
+                })
+                .filter((user) => {
+                  return statusCategory === "semua"
+                    ? user
+                    : user.status.toLowerCase().includes(statusCategory);
+                })
+                .map(({ id, name, status, paket, berat, total }, index) => {
+                  const isLast = index === users.length - 1;
+                  const classes = isLast
+                    ? "p-4"
+                    : "p-4 border-b border-blue-gray-50";
 
-                return (
-                  <tr key={name}>
-                    {/* name */}
-                    <td className={classes}>
-                      <div className="flex items-center gap-3 ml-7">
-                        <Avatar
-                          src={
-                            "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
-                          }
-                          alt={name}
-                          size="sm"
-                        />
+                  return (
+                    <tr key={id}>
+                      {/* name */}
+                      <td className={classes}>
+                        <div className="flex items-center gap-3 ml-7">
+                          <Avatar
+                            src={`/icons/profile-${Math.floor(
+                              Math.random() * 4
+                            )}.png`}
+                            alt={name}
+                            size="sm"
+                          />
 
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal"
+                          >
+                            {name}
+                          </Typography>
+                        </div>
+                      </td>
+                      {/* Status Pesanan */}
+
+                      <td className={classes}>
+                        <div className="w-max ml-7">
+                          <Chip
+                            variant="ghost"
+                            size="sm"
+                            value={status}
+                            color={
+                              status === "Selesai"
+                                ? "green"
+                                : status === "Proses"
+                                ? "yellow"
+                                : "blue-gray"
+                            }
+                          />
+                        </div>
+                      </td>
+
+                      {/* Paket */}
+                      <td className={classes}>
+                        <div className="flex flex-col ml-7">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal"
+                          >
+                            {paket.name}
+                          </Typography>
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal opacity-70"
+                          >
+                            {paket.waktu < 24 ? paket.waktu : paket.waktu / 24}
+                            {paket.waktu < 24 ? <> Jam</> : <> Hari</>} ({" "}
+                            {berat} kg )
+                          </Typography>
+                        </div>
+                      </td>
+
+                      {/* Total bayar */}
+                      <td className={classes}>
                         <Typography
                           variant="small"
                           color="blue-gray"
-                          className="font-normal"
+                          className="font-normal ml-7"
                         >
-                          {name}
+                          Rp {total}
                         </Typography>
-                      </div>
-                    </td>
-                    {/* Status Pesanan */}
-
-                    <td className={classes}>
-                      <div className="w-max ml-7">
-                        <Chip
-                          variant="ghost"
-                          size="sm"
-                          value={status}
-                          color={
-                            status === "Selesai"
-                              ? "green"
-                              : status === "Proses"
-                              ? "yellow"
-                              : "blue-gray"
-                          }
-                        />
-                      </div>
-                    </td>
-
-                    {/* Paket */}
-                    <td className={classes}>
-                      <div className="flex flex-col ml-7">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {paket.name}
-                        </Typography>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal opacity-70"
-                        >
-                          {paket.waktu < 24 ? paket.waktu : paket.waktu / 24}
-                          {paket.waktu < 24 ? <> Jam</> : <> Hari</>} ( {berat}{" "}
-                          kg )
-                        </Typography>
-                      </div>
-                    </td>
-
-                    {/* Total bayar */}
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal ml-7"
-                      >
-                        Rp {total}
-                      </Typography>
-                    </td>
-                  </tr>
-                );
-              })}
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         </CardBody>
