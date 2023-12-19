@@ -8,7 +8,7 @@ const EditUser = () => {
   const [status, setStatus] = useState("Baru");
   const [paketId, setPaketId] = useState("");
   const [total, setTotal] = useState("");
-  const [dibayar, setBayar] = useState("0");
+  const [dibayar, setBayar] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
   const [paketOption, setPaketOption] = useState([]);
@@ -58,7 +58,6 @@ const EditUser = () => {
             Update Pesanan
           </h1>
           <div className="column is-half mx-8">
-
             <form onSubmit={updateUser}>
               <div className="field">
                 <label className="label">Nama</label>
@@ -123,8 +122,8 @@ const EditUser = () => {
                   onChange={(e) => setBayar(e.target.value)}
                   class="block w-full input rounded-xl py-3 px-2 border border-blue-gray-800 mt-2 mb-4"
                 >
-                  <option value="1">Lunas</option>
-                  <option value="0">Belum Bayar</option>
+                  <option value="true">Lunas</option>
+                  <option value="false">Belum Bayar</option>
                 </select>
               </div>
               {/* Total Bayar */}
