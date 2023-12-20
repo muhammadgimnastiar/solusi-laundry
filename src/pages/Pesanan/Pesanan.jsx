@@ -132,7 +132,7 @@ export function Pesanan() {
                   const isLast = index === users.length - 1;
                   const classes = isLast
                     ? "p-4"
-                    : "p-4 border-b border-blue-gray-50";
+                    : "p-4 border-b border-blue-gray-50 ";
 
                   return (
                     <tr key={id}>
@@ -210,6 +210,41 @@ export function Pesanan() {
                     </tr>
                   );
                 })}
+              {users.length < 1 ? (
+                TABS.map((index, i) => (
+                  <tr className="animate-pulse">
+                    {/* name */}
+                    <td className="p-4 border-b border-blue-gray-50 h-2 bg-slate-200 rounded">
+                      <div className="flex items-center gap-3 ml-7">
+                        <div class="rounded-full bg-blue-gray-200 h-10 w-10"></div>
+                        <div class="h-5 bg-blue-gray-100 w-20 rounded"></div>
+                      </div>
+                    </td>
+
+                    {/* Status Pesanan */}
+                    <td className="p-4 border-b border-blue-gray-50 h-2 bg-slate-200 rounded">
+                      <div className="w-max ml-7">
+                        <div class="h-6 bg-blue-gray-100 w-12 rounded"></div>
+                      </div>
+                    </td>
+
+                    {/* Paket */}
+                    <td className="p-4 border-b border-blue-gray-50 h-2 bg-slate-200 rounded">
+                      <div className="flex flex-col ml-7 gap-1">
+                        <div class="h-4 bg-blue-gray-200 w-24 rounded"></div>
+                        <div class="h-4 bg-blue-gray-100 w-20 rounded"></div>
+                      </div>
+                    </td>
+
+                    {/* Total bayar */}
+                    <td className="p-4 border-b border-blue-gray-50 h-2 bg-slate-200 rounded">
+                      <div class="h-5 bg-blue-gray-200 w-20 rounded"></div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <></>
+              )}
             </tbody>
           </table>
         </CardBody>
