@@ -18,7 +18,7 @@ function Hero() {
           </h5>
         </div>
         <div className="gap-2 mx-auto flex justify-center xl:justify-start">
-          <a href="">
+          <a href="https://api.whatsapp.com/send?phone=6285787043190&text=*Solusi%20Laundry*%0ANama%3A%20%0APaket%3A%20%0ABerat%3A%20...%20Kg%0A">
             <Button className="bg-primary-blue rounded-xl px-8 py-3 font-inter font-semibold text-bg ">
               Pesan Sekarang
             </Button>
@@ -26,7 +26,7 @@ function Hero() {
           <a href="/Pesanan">
             <Button
               className="rounded-xl px-8 py-3 font-inter font-semibold "
-              variant="text" 
+              variant="text"
             >
               Lihat Pesanan
             </Button>

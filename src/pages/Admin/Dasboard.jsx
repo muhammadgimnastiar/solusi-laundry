@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
 import {
   Card,
@@ -17,10 +17,10 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 import { useAuth } from "../../utils/AuthContext";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import api from "../../api/AxiosConfig";
 import { Link } from "react-router-dom";
-
+import { DownloadTableExcel } from "react-export-table-to-excel";
 const TABS = [
   {
     label: "Semua",
@@ -39,18 +39,20 @@ const TABS = [
     value: "selesai",
   },
 ];
+
 const TABLE_HEAD = [
   "Nama",
   "Status Pesanan",
   "Paket",
   "Status Pembayaran",
   "Total Bayar",
-  "",
+  "Action",
 ];
 
 export function Dashboard() {
   const [users, setUser] = useState([]);
   const [search, setSearch] = useState("");
+  const tableRef = useRef(null);
   const [statusCategory, setStatusCategory] = useState("");
   console.log(statusCategory);
   useEffect(() => {
@@ -63,11 +65,13 @@ export function Dashboard() {
   };
 
   const deleteUser = async (id) => {
-    try {
-      await api.delete(`/users/${id}`);
-      getUsers();
-    } catch (error) {
-      console.log(error);
+    if (window.confirm("Are you sure you want to delete?")) {
+      try {
+        await api.delete(`/users/${id}`);
+        getUsers();
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   const { logoutUser } = useAuth();
@@ -130,7 +134,10 @@ export function Dashboard() {
           </div>
         </CardHeader>
         <CardBody className="overflow-scroll px-0">
-          <table className="mt-4 w-full min-w-max table-auto text-left ">
+          <table
+            className="mt-4 w-full min-w-max table-auto text-left "
+            ref={tableRef}
+          >
             <thead>
               <tr>
                 {TABLE_HEAD.map((head) => (
@@ -267,6 +274,14 @@ export function Dashboard() {
                               </IconButton>
                             </Link>
                           </Tooltip>
+                          <Tooltip content="delete User">
+                            <IconButton
+                              onClick={() => deleteUser(id)}
+                              variant="text"
+                            >
+                              <TrashIcon className="h-4 w-4" />
+                            </IconButton>
+                          </Tooltip>
                         </td>
                       </tr>
                     );
@@ -329,6 +344,15 @@ export function Dashboard() {
             <Button variant="outlined" size="sm">
               Selanjutnya
             </Button>
+            <DownloadTableExcel
+              filename="SolusiLaundry Report"
+              sheet="DaftarPesanan"
+              currentTableRef={tableRef.current}
+            >
+              <Button variant="filled" size="sm">
+                Export To Excel
+              </Button>
+            </DownloadTableExcel>
           </div>
         </CardFooter>
       </Card>

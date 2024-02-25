@@ -11,6 +11,7 @@ import Pesanan from "./pages/Pesanan/Pesanan";
 import Paket from "./pages/Paket/Paket";
 import Icons from "./assets/css/icons";
 import AdminLogin from "./pages/Admin/Login";
+import AdminRegister from "./pages/Admin/Register";
 import UserRoot from "./routes/UserRoot";
 import NotFound from "./pages/NotFound/NotFound";
 import { Dashboard } from "./pages/Admin/Dasboard";
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/paket" element={<Paket />} />
           </Route>
           <Route path="/login" element={<AdminLogin />} />
+          <Route path="/register" element={<AdminRegister />} />
           <Route path="/admin" element={<ProtectedRoute />}>
             <Route path="" element={<AdminLogin />} />
             <Route path="pesanan/add" element={<AddPesanan />} />
