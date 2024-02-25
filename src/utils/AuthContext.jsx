@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
       let response = await account.create(
         ID.unique(),
         userInfo.email,
-        userInfo.password1,
+        userInfo.password,
         userInfo.name
       );
 

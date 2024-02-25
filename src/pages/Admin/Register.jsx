@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/AuthContext";
 import { Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-function Login() {
-  const { user, loginUser } = useAuth();
+function Register() {
+  const { user, registerUser } = useAuth();
 
   const [input, setinput] = useState({});
 
@@ -25,17 +25,30 @@ function Login() {
 
     const email = input.email;
     const password = input.password;
+    const name = input.name;
 
-    const userInfo = { email, password };
+    const userInfo = { email, password, name };
 
-    loginUser(userInfo);
+    registerUser(userInfo);
   };
 
   return (
     <div className="bg-bg text-white h-screen flex justify-center items-center">
       <div className="bg-secondary-blue border border-blue-500 rounded-md p-20 shadow-md relative">
-        <h1 className="text-4xl font-bold text-center mb-6">Masuk Akun</h1>
+        <h1 className="text-4xl font-bold text-center mb-6">Daftar Akun</h1>
         <form onSubmit={handleSubmit}>
+          <div className="relative my-4">
+            <label htmlFor="">Nama</label>
+            <input
+              type="text"
+              className="block rounded-xl w-72 py-2.5 px-3 text-sm text-black border-0 border-b-2 focus:outline-none focus:border-blue-gray-500 focus:ring-blue-gray-500 focus:ring-1 peer"
+              value={input.nama}
+              onChange={(e) => setinput({ ...input, name: e.target.value })}
+              pattern="\d{3,}"
+              title="minimal 3 karakter"
+              required
+            />
+          </div>
           <div className="relative my-4">
             <label htmlFor="">Email</label>
             <input
@@ -60,7 +73,7 @@ function Login() {
             type="submit"
             className="w-full pb-2 pt-2 place-content-center rounded-xl font-bold bg-primary-blue"
           >
-            Masuk
+            Register
           </button>
         </form>
         <Typography
@@ -69,9 +82,9 @@ function Login() {
           color="blue-gray"
           className="p-1 mt-2 font-normal font-inter text-sm"
         >
-          Belum punya akun?{" "}
-          <Link to={"/register"} className="Flex items-center underline">
-            Daftar
+          Sudah punya akun?{" "}
+          <Link to={"/login"} className="Flex items-center underline">
+            Login
           </Link>
         </Typography>
       </div>
@@ -79,4 +92,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
