@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/AuthContext";
 import { Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+
 function Register() {
   const { user, registerUser } = useAuth();
 
@@ -29,7 +30,7 @@ function Register() {
 
     const userInfo = { email, password, name };
 
-    registerUser(userInfo);
+    await registerUser(userInfo);
   };
 
   return (
@@ -44,8 +45,7 @@ function Register() {
               className="block rounded-xl w-72 py-2.5 px-3 text-sm text-black border-0 border-b-2 focus:outline-none focus:border-blue-gray-500 focus:ring-blue-gray-500 focus:ring-1 peer"
               value={input.nama}
               onChange={(e) => setinput({ ...input, name: e.target.value })}
-              pattern="\d{3,}"
-              title="minimal 3 karakter"
+              pattern=".{3,}"
               required
             />
           </div>

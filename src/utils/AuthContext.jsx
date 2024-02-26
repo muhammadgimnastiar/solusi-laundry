@@ -51,11 +51,11 @@ export const AuthProvider = ({ children }) => {
         userInfo.name
       );
 
-      await account.createEmailSession(userInfo.email, userInfo.password1);
-      let accountDetails = await account.get();
-      setUser(accountDetails);
-      navigate("/");
+      await account.createEmailSession(userInfo.email, userInfo.password);
+      alert("Email berhasil didaftarkan, Silahkan Login!");
+      navigate("/login");
     } catch (error) {
+      alert(error.message);
       console.error(error);
     }
 
